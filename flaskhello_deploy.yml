@@ -6,6 +6,8 @@
       name: hello
       user: flask 
       domain: hello.test
+      repository: https://github.com/e-lie/flask_hello_ansible.git
+      version: master
 
   tasks:
     - name: update apt cache
@@ -38,9 +40,9 @@
 
     - name: git get app files
       git:
-        repo: "https://github.com/e-lie/flask_hello_ansible.git"
+        repo: "{{ app.repository }}"
         dest: /home/{{ app.user }}/{{ app.name }}
-        version: "master"
+        version: "{{ app.version }}"
         clone: yes
         update: no
 
